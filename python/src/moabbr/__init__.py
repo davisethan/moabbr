@@ -1,3 +1,10 @@
+"""Python interface to the moabbr Docker image for network meta-analysis of MOABB benchmarks.
+
+Compares BCI decoding pipelines across datasets using frequentist NMA
+(`nma`) and Bayesian NMA (`bnma`) as a sensitivity analysis. Requires
+[Docker](https://www.docker.com) with the moabbr image available locally.
+"""
+
 from .run import nma, bnma
 
 __all__ = [nma.__name__, bnma.__name__]
