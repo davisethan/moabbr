@@ -50,6 +50,8 @@ moabbr    </h1>
 <p>Compares BCI decoding pipelines across datasets using frequentist NMA
 (<code><a href="#nma">nma</a></code>) and Bayesian NMA (<code><a href="#bnma">bnma</a></code>) as a sensitivity analysis. Requires
 <a href="https://www.docker.com">Docker</a> with the moabbr image available locally.</p>
+
+<p>Source: <a href="https://github.com/davisethan/moabbr">github.com/davisethan/moabbr</a></p>
 </div>
 
                         <input id="mod-moabbr-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
@@ -61,11 +63,13 @@ moabbr    </h1>
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">Compares BCI decoding pipelines across datasets using frequentist NMA</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">(`nma`) and Bayesian NMA (`bnma`) as a sensitivity analysis. Requires</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="sd">[Docker](https://www.docker.com) with the moabbr image available locally.</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.run</span><span class="w"> </span><span class="kn">import</span> <span class="n">nma</span><span class="p">,</span> <span class="n">bnma</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">Source: [github.com/davisethan/moabbr](https://github.com/davisethan/moabbr)</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">nma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">bnma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.run</span><span class="w"> </span><span class="kn">import</span> <span class="n">nma</span><span class="p">,</span> <span class="n">bnma</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">nma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">bnma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -92,21 +96,18 @@ moabbr    </h1>
 </span><span id="nma-37"><a href="#nma-37"><span class="linenos">37</span></a><span class="sd">    represents row minus col. Diagonal entries are `null`.</span>
 </span><span id="nma-38"><a href="#nma-38"><span class="linenos">38</span></a>
 </span><span id="nma-39"><a href="#nma-39"><span class="linenos">39</span></a><span class="sd">    Parameters:</span>
-</span><span id="nma-40"><a href="#nma-40"><span class="linenos">40</span></a><span class="sd">        results: MOABB evaluation output with columns `dataset`, `pipeline`,</span>
-</span><span id="nma-41"><a href="#nma-41"><span class="linenos">41</span></a><span class="sd">            `subject`, `score`.</span>
-</span><span id="nma-42"><a href="#nma-42"><span class="linenos">42</span></a><span class="sd">        greater_is_better: Whether a higher score is better. Set to `False`</span>
-</span><span id="nma-43"><a href="#nma-43"><span class="linenos">43</span></a><span class="sd">            for metrics like NLL or Brier score. Affects P-score ranking.</span>
-</span><span id="nma-44"><a href="#nma-44"><span class="linenos">44</span></a>
-</span><span id="nma-45"><a href="#nma-45"><span class="linenos">45</span></a><span class="sd">    Returns:</span>
-</span><span id="nma-46"><a href="#nma-46"><span class="linenos">46</span></a><span class="sd">        A dict with keys **p_scores** (`dict[str, float]`, P-score per</span>
-</span><span id="nma-47"><a href="#nma-47"><span class="linenos">47</span></a><span class="sd">        pipeline, higher is better, frequentist analogue of SUCRA),</span>
-</span><span id="nma-48"><a href="#nma-48"><span class="linenos">48</span></a><span class="sd">        **league** (`dict`, pairwise table with `md`, `lower`, `upper`,</span>
-</span><span id="nma-49"><a href="#nma-49"><span class="linenos">49</span></a><span class="sd">        `z`, `pval`), **heterogeneity** (`dict`, `tau2`, `tau`, `i2`,</span>
-</span><span id="nma-50"><a href="#nma-50"><span class="linenos">50</span></a><span class="sd">        `i2_lower`, `i2_upper`, `q`, `q_df`, `q_pval`), and **prediction**</span>
-</span><span id="nma-51"><a href="#nma-51"><span class="linenos">51</span></a><span class="sd">        (`dict`, prediction interval matrix `lower`/`upper` on the outcome</span>
-</span><span id="nma-52"><a href="#nma-52"><span class="linenos">52</span></a><span class="sd">        scale).</span>
-</span><span id="nma-53"><a href="#nma-53"><span class="linenos">53</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="nma-54"><a href="#nma-54"><span class="linenos">54</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">)</span>
+</span><span id="nma-40"><a href="#nma-40"><span class="linenos">40</span></a>
+</span><span id="nma-41"><a href="#nma-41"><span class="linenos">41</span></a><span class="sd">    - **results**: MOABB evaluation output with columns `dataset`, `pipeline`, `subject`, `score`.</span>
+</span><span id="nma-42"><a href="#nma-42"><span class="linenos">42</span></a><span class="sd">    - **greater_is_better**: Whether a higher score is better. Set to `False` for metrics like NLL or Brier score. Affects P-score ranking.</span>
+</span><span id="nma-43"><a href="#nma-43"><span class="linenos">43</span></a>
+</span><span id="nma-44"><a href="#nma-44"><span class="linenos">44</span></a><span class="sd">    Returns:</span>
+</span><span id="nma-45"><a href="#nma-45"><span class="linenos">45</span></a>
+</span><span id="nma-46"><a href="#nma-46"><span class="linenos">46</span></a><span class="sd">    - **p_scores** (`dict[str, float]`): P-score per pipeline. Higher is better. Frequentist analogue of SUCRA.</span>
+</span><span id="nma-47"><a href="#nma-47"><span class="linenos">47</span></a><span class="sd">    - **league** (`dict`): Pairwise table with keys `md`, `lower`, `upper` (95% CI), `z`, `pval` (two-sided).</span>
+</span><span id="nma-48"><a href="#nma-48"><span class="linenos">48</span></a><span class="sd">    - **heterogeneity** (`dict`): `tau2`, `tau` (DL point estimates); `i2`, `i2_lower`, `i2_upper` (95% CI); `q`, `q_df`, `q_pval`.</span>
+</span><span id="nma-49"><a href="#nma-49"><span class="linenos">49</span></a><span class="sd">    - **prediction** (`dict`): Prediction interval matrix `lower`/`upper` on the outcome scale — expected range of true effects in a new dataset.</span>
+</span><span id="nma-50"><a href="#nma-50"><span class="linenos">50</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="nma-51"><a href="#nma-51"><span class="linenos">51</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -119,20 +120,21 @@ treatment. All pairwise comparisons are direct (fully-crossed benchmark).</p>
 <p>All league tables are keyed as <code>league[metric][row][col]</code>, where the value
 represents row minus col. Diagonal entries are <code>null</code>.</p>
 
-<p>Parameters:
-    results: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>,
-        <code>subject</code>, <code>score</code>.
-    greater_is_better: Whether a higher score is better. Set to <code>False</code>
-        for metrics like NLL or Brier score. Affects P-score ranking.</p>
+<p>Parameters:</p>
 
-<p>Returns:
-    A dict with keys <strong>p_scores</strong> (<code>dict[str, float]</code>, P-score per
-    pipeline, higher is better, frequentist analogue of SUCRA),
-    <strong>league</strong> (<code>dict</code>, pairwise table with <code>md</code>, <code>lower</code>, <code>upper</code>,
-    <code>z</code>, <code>pval</code>), <strong>heterogeneity</strong> (<code>dict</code>, <code>tau2</code>, <code>tau</code>, <code>i2</code>,
-    <code>i2_lower</code>, <code>i2_upper</code>, <code>q</code>, <code>q_df</code>, <code>q_pval</code>), and <strong>prediction</strong>
-    (<code>dict</code>, prediction interval matrix <code>lower</code>/<code>upper</code> on the outcome
-    scale).</p>
+<ul>
+<li><strong>results</strong>: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
+<li><strong>greater_is_better</strong>: Whether a higher score is better. Set to <code>False</code> for metrics like NLL or Brier score. Affects P-score ranking.</li>
+</ul>
+
+<p>Returns:</p>
+
+<ul>
+<li><strong>p_scores</strong> (<code>dict[str, float]</code>): P-score per pipeline. Higher is better. Frequentist analogue of SUCRA.</li>
+<li><strong>league</strong> (<code>dict</code>): Pairwise table with keys <code>md</code>, <code>lower</code>, <code>upper</code> (95% CI), <code>z</code>, <code>pval</code> (two-sided).</li>
+<li><strong>heterogeneity</strong> (<code>dict</code>): <code>tau2</code>, <code>tau</code> (DL point estimates); <code>i2</code>, <code>i2_lower</code>, <code>i2_upper</code> (95% CI); <code>q</code>, <code>q_df</code>, <code>q_pval</code>.</li>
+<li><strong>prediction</strong> (<code>dict</code>): Prediction interval matrix <code>lower</code>/<code>upper</code> on the outcome scale — expected range of true effects in a new dataset.</li>
+</ul>
 </div>
 
 
@@ -148,31 +150,29 @@ represents row minus col. Diagonal entries are <code>null</code>.</p>
 
     </div>
     <a class="headerlink" href="#bnma"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="bnma-57"><a href="#bnma-57"><span class="linenos">57</span></a><span class="k">def</span><span class="w"> </span><span class="nf">bnma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-</span><span id="bnma-58"><a href="#bnma-58"><span class="linenos">58</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run Bayesian network meta-analysis via gemtc.</span>
-</span><span id="bnma-59"><a href="#bnma-59"><span class="linenos">59</span></a>
-</span><span id="bnma-60"><a href="#bnma-60"><span class="linenos">60</span></a><span class="sd">    Fits a random-effects NMA (normal likelihood, identity link, 4 chains x</span>
-</span><span id="bnma-61"><a href="#bnma-61"><span class="linenos">61</span></a><span class="sd">    100k iterations, thinning 10) via JAGS. Used as a sensitivity analysis</span>
-</span><span id="bnma-62"><a href="#bnma-62"><span class="linenos">62</span></a><span class="sd">    alongside `nma`.</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="bnma-54"><a href="#bnma-54"><span class="linenos">54</span></a><span class="k">def</span><span class="w"> </span><span class="nf">bnma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="bnma-55"><a href="#bnma-55"><span class="linenos">55</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run Bayesian network meta-analysis via gemtc.</span>
+</span><span id="bnma-56"><a href="#bnma-56"><span class="linenos">56</span></a>
+</span><span id="bnma-57"><a href="#bnma-57"><span class="linenos">57</span></a><span class="sd">    Fits a random-effects NMA (normal likelihood, identity link, 4 chains x</span>
+</span><span id="bnma-58"><a href="#bnma-58"><span class="linenos">58</span></a><span class="sd">    100k iterations, thinning 10) via JAGS. Used as a sensitivity analysis</span>
+</span><span id="bnma-59"><a href="#bnma-59"><span class="linenos">59</span></a><span class="sd">    alongside `nma`.</span>
+</span><span id="bnma-60"><a href="#bnma-60"><span class="linenos">60</span></a>
+</span><span id="bnma-61"><a href="#bnma-61"><span class="linenos">61</span></a><span class="sd">    All league tables are keyed as `league[metric][row][col]`, where the value</span>
+</span><span id="bnma-62"><a href="#bnma-62"><span class="linenos">62</span></a><span class="sd">    represents row minus col. Diagonal entries are `null`.</span>
 </span><span id="bnma-63"><a href="#bnma-63"><span class="linenos">63</span></a>
-</span><span id="bnma-64"><a href="#bnma-64"><span class="linenos">64</span></a><span class="sd">    All league tables are keyed as `league[metric][row][col]`, where the value</span>
-</span><span id="bnma-65"><a href="#bnma-65"><span class="linenos">65</span></a><span class="sd">    represents row minus col. Diagonal entries are `null`.</span>
-</span><span id="bnma-66"><a href="#bnma-66"><span class="linenos">66</span></a>
-</span><span id="bnma-67"><a href="#bnma-67"><span class="linenos">67</span></a><span class="sd">    Parameters:</span>
-</span><span id="bnma-68"><a href="#bnma-68"><span class="linenos">68</span></a><span class="sd">        results: MOABB evaluation output with columns `dataset`, `pipeline`,</span>
-</span><span id="bnma-69"><a href="#bnma-69"><span class="linenos">69</span></a><span class="sd">            `subject`, `score`.</span>
-</span><span id="bnma-70"><a href="#bnma-70"><span class="linenos">70</span></a><span class="sd">        greater_is_better: Whether a higher score is better. Set to `False`</span>
-</span><span id="bnma-71"><a href="#bnma-71"><span class="linenos">71</span></a><span class="sd">            for metrics like NLL or Brier score. Affects SUCRA ranking.</span>
-</span><span id="bnma-72"><a href="#bnma-72"><span class="linenos">72</span></a>
-</span><span id="bnma-73"><a href="#bnma-73"><span class="linenos">73</span></a><span class="sd">    Returns:</span>
-</span><span id="bnma-74"><a href="#bnma-74"><span class="linenos">74</span></a><span class="sd">        A dict with keys **sucra** (`dict[str, float]`, SUCRA per pipeline,</span>
-</span><span id="bnma-75"><a href="#bnma-75"><span class="linenos">75</span></a><span class="sd">        higher is better, Bayesian analogue of P-scores), **league** (`dict`,</span>
-</span><span id="bnma-76"><a href="#bnma-76"><span class="linenos">76</span></a><span class="sd">        pairwise table with `md` posterior median, `lower`/`upper` 95%</span>
-</span><span id="bnma-77"><a href="#bnma-77"><span class="linenos">77</span></a><span class="sd">        credible intervals), **heterogeneity** (`dict`, `sd`, `sd_lower`,</span>
-</span><span id="bnma-78"><a href="#bnma-78"><span class="linenos">78</span></a><span class="sd">        `sd_upper`), and **convergence** (`dict`, `rhat_max`, `ess_bulk_min`,</span>
-</span><span id="bnma-79"><a href="#bnma-79"><span class="linenos">79</span></a><span class="sd">        `ess_tail_min`).</span>
-</span><span id="bnma-80"><a href="#bnma-80"><span class="linenos">80</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="bnma-81"><a href="#bnma-81"><span class="linenos">81</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">)</span>
+</span><span id="bnma-64"><a href="#bnma-64"><span class="linenos">64</span></a><span class="sd">    Parameters:</span>
+</span><span id="bnma-65"><a href="#bnma-65"><span class="linenos">65</span></a>
+</span><span id="bnma-66"><a href="#bnma-66"><span class="linenos">66</span></a><span class="sd">    - **results**: MOABB evaluation output with columns `dataset`, `pipeline`, `subject`, `score`.</span>
+</span><span id="bnma-67"><a href="#bnma-67"><span class="linenos">67</span></a><span class="sd">    - **greater_is_better**: Whether a higher score is better. Set to `False` for metrics like NLL or Brier score. Affects SUCRA ranking.</span>
+</span><span id="bnma-68"><a href="#bnma-68"><span class="linenos">68</span></a>
+</span><span id="bnma-69"><a href="#bnma-69"><span class="linenos">69</span></a><span class="sd">    Returns:</span>
+</span><span id="bnma-70"><a href="#bnma-70"><span class="linenos">70</span></a>
+</span><span id="bnma-71"><a href="#bnma-71"><span class="linenos">71</span></a><span class="sd">    - **sucra** (`dict[str, float]`): SUCRA per pipeline. Higher is better. Bayesian analogue of P-scores.</span>
+</span><span id="bnma-72"><a href="#bnma-72"><span class="linenos">72</span></a><span class="sd">    - **league** (`dict`): Pairwise table with keys `md` (posterior median), `lower`/`upper` (95% credible intervals).</span>
+</span><span id="bnma-73"><a href="#bnma-73"><span class="linenos">73</span></a><span class="sd">    - **heterogeneity** (`dict`): `sd` (posterior median of between-study SD, Bayesian analogue of tau), `sd_lower`, `sd_upper` (95% credible interval).</span>
+</span><span id="bnma-74"><a href="#bnma-74"><span class="linenos">74</span></a><span class="sd">    - **convergence** (`dict`): `rhat_max` (&lt; 1.01), `ess_bulk_min` (&gt; 400), `ess_tail_min` (&gt; 400).</span>
+</span><span id="bnma-75"><a href="#bnma-75"><span class="linenos">75</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="bnma-76"><a href="#bnma-76"><span class="linenos">76</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -185,19 +185,21 @@ alongside <code><a href="#nma">nma</a></code>.</p>
 <p>All league tables are keyed as <code>league[metric][row][col]</code>, where the value
 represents row minus col. Diagonal entries are <code>null</code>.</p>
 
-<p>Parameters:
-    results: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>,
-        <code>subject</code>, <code>score</code>.
-    greater_is_better: Whether a higher score is better. Set to <code>False</code>
-        for metrics like NLL or Brier score. Affects SUCRA ranking.</p>
+<p>Parameters:</p>
 
-<p>Returns:
-    A dict with keys <strong>sucra</strong> (<code>dict[str, float]</code>, SUCRA per pipeline,
-    higher is better, Bayesian analogue of P-scores), <strong>league</strong> (<code>dict</code>,
-    pairwise table with <code>md</code> posterior median, <code>lower</code>/<code>upper</code> 95%
-    credible intervals), <strong>heterogeneity</strong> (<code>dict</code>, <code>sd</code>, <code>sd_lower</code>,
-    <code>sd_upper</code>), and <strong>convergence</strong> (<code>dict</code>, <code>rhat_max</code>, <code>ess_bulk_min</code>,
-    <code>ess_tail_min</code>).</p>
+<ul>
+<li><strong>results</strong>: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
+<li><strong>greater_is_better</strong>: Whether a higher score is better. Set to <code>False</code> for metrics like NLL or Brier score. Affects SUCRA ranking.</li>
+</ul>
+
+<p>Returns:</p>
+
+<ul>
+<li><strong>sucra</strong> (<code>dict[str, float]</code>): SUCRA per pipeline. Higher is better. Bayesian analogue of P-scores.</li>
+<li><strong>league</strong> (<code>dict</code>): Pairwise table with keys <code>md</code> (posterior median), <code>lower</code>/<code>upper</code> (95% credible intervals).</li>
+<li><strong>heterogeneity</strong> (<code>dict</code>): <code>sd</code> (posterior median of between-study SD, Bayesian analogue of tau), <code>sd_lower</code>, <code>sd_upper</code> (95% credible interval).</li>
+<li><strong>convergence</strong> (<code>dict</code>): <code>rhat_max</code> (&lt; 1.01), <code>ess_bulk_min</code> (&gt; 400), <code>ess_tail_min</code> (&gt; 400).</li>
+</ul>
 </div>
 
 
