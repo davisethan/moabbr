@@ -6,7 +6,7 @@ import subprocess
 import duckdb
 import pandas as pd
 
-_image = os.getenv("MOABBR_IMAGE", "ethandavisecd/moabbr:latest")
+_image = os.getenv("PROCR_IMAGE", "ethandavisecd/procr:latest")
 
 
 def _sql(command: str, results: pd.DataFrame) -> pd.DataFrame:
