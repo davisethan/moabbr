@@ -15,6 +15,7 @@ jaraco.functools==4.5.0
 Jinja2==3.1.6
 keyring==25.7.0
 markdown-it-py==4.2.0
+markdown2==2.5.5
 MarkupSafe==3.0.3
 mdurl==0.1.2
 more-itertools==11.1.0
@@ -23,6 +24,7 @@ numpy==2.5.0
 packaging==26.2
 pandas==3.0.3
 pathspec==1.1.1
+pdoc==16.0.0
 platformdirs==4.10.0
 pluggy==1.6.0
 Pygments==2.20.0

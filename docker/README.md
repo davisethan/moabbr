@@ -19,8 +19,6 @@ docker push ethandavisecd/moabbr:latest
 
 ## Lint and format
 
-Run from the `docker/` directory.
-
 **R:**
 
 ```bash

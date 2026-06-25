@@ -10,9 +10,13 @@ The moabbr Docker image must be available locally before use:
 docker pull ethandavisecd/moabbr:latest
 ```
 
-## Lint and format
+## Docs
 
-Run from the `python/` directory.
+```bash
+pdoc src/moabbr --output-dir docs
+```
+
+## Lint and format
 
 ```bash
 ruff check src
