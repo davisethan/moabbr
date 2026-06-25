@@ -1,10 +1,19 @@
+import importlib.resources
 import json
 import os
 import subprocess
 
+import duckdb
 import pandas as pd
 
 _image = os.getenv("MOABBR_IMAGE", "ethandavisecd/moabbr:latest")
+
+
+def _sql(command: str, results: pd.DataFrame) -> pd.DataFrame:
+    sql = importlib.resources.files("moabbr").joinpath(f"sql/{command}.sql").read_text()
+    con = duckdb.connect()
+    con.register("results", results)
+    return con.execute(sql).df()
 
 
 def _run(command: str, results: pd.DataFrame, greater_is_better: bool) -> dict:
@@ -47,7 +56,7 @@ def nma(results: pd.DataFrame, greater_is_better: bool = True) -> dict:
     - **heterogeneity** (`dict`): `tau2`, `tau` (DL point estimates); `i2`, `i2_lower`, `i2_upper` (95% CI); `q`, `q_df`, `q_pval`.
     - **prediction** (`dict`): Prediction interval matrix `lower`/`upper` on the outcome scale — expected range of true effects in a new dataset.
     """
-    return _run("nma", results, greater_is_better)
+    return _run("nma", _sql("nma", results), greater_is_better)
 
 
 def bnma(results: pd.DataFrame, greater_is_better: bool = True) -> dict:
@@ -72,4 +81,4 @@ def bnma(results: pd.DataFrame, greater_is_better: bool = True) -> dict:
     - **heterogeneity** (`dict`): `sd` (posterior median of between-study SD, Bayesian analogue of tau), `sd_lower`, `sd_upper` (95% credible interval).
     - **convergence** (`dict`): `rhat_max` (< 1.01), `ess_bulk_min` (> 400), `ess_tail_min` (> 400).
     """
-    return _run("bnma", results, greater_is_better)
+    return _run("bnma", _sql("bnma", results), greater_is_better)
