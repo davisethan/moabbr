@@ -50,7 +50,16 @@ docker pull ethandavisecd/moabbr:latest
 
 ## Lint and format
 
+**Python:**
+
 ```bash
-ruff check src
-ruff format src
+ruff check moabbr
+ruff format moabbr
+```
+
+**SQL:**
+
+```bash
+sqlfluff lint moabbr --dialect duckdb
+sqlfluff fix moabbr --dialect duckdb
 ```
