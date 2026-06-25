@@ -10,12 +10,6 @@ The moabbr Docker image must be available locally before use:
 docker pull ethandavisecd/moabbr:latest
 ```
 
-## Docs
-
-```bash
-pdoc src/moabbr --output-dir docs
-```
-
 ## Lint and format
 
 ```bash

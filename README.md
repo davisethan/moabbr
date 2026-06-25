@@ -31,3 +31,9 @@ bnma = moabbr.bnma(results)
 
 - [`docker/`](docker/) — R environment and Dockerfile
 - [`python/`](python/) — PyPI package
+
+## Docs
+
+```bash
+pdoc python/src/moabbr --output-dir docs
+```
