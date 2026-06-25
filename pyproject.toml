@@ -8,3 +8,6 @@ version = "0.0.2"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/moabbr"]
+
+[tool.sqlfluff.core]
+dialect = "duckdb"

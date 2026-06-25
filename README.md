@@ -1,8 +1,6 @@
 # moabbr
 
-Network meta-analysis of [MOABB](https://github.com/NeuroTechX/moabb) BCI benchmarks.
-
-Compares BCI decoding pipelines across datasets using frequentist NMA ([netmeta](https://cran.r-project.org/package=netmeta)) and Bayesian NMA ([gemtc](https://cran.r-project.org/package=gemtc)) as a sensitivity analysis. Each dataset is treated as an independent study; the outcome is mean decoding on a mean difference scale.
+A Python interface to R's statistical ecosystem, containerised in the [procr](https://hub.docker.com/r/ethandavisecd/procr) Docker image, for [MOABB](https://github.com/NeuroTechX/moabb) benchmark analysis.
 
 ## Installation
 
@@ -10,30 +8,47 @@ Compares BCI decoding pipelines across datasets using frequentist NMA ([netmeta]
 pip install moabbr
 ```
 
-Requires [Docker](https://www.docker.com) with the moabbr image pulled:
+Requires [Docker](https://www.docker.com) with the procr image pulled:
 
 ```bash
-docker pull ethandavisecd/moabbr:latest
+docker pull ethandavisecd/procr:latest
 ```
 
 ## Usage
 
-```python
-import moabbr
+`results` is the `pd.DataFrame` returned by a MOABB evaluation, with columns `dataset`, `pipeline`, `subject`, and `score`.
 
-nma = moabbr.nma(results)
-bnma = moabbr.bnma(results)
+### Network meta-analysis
+
+```python
+import moabbr as r
+
+nma = r.nma(results)    # frequentist NMA via netmeta
+bnma = r.bnma(results)  # Bayesian NMA via gemtc (sensitivity analysis)
 ```
 
-`results` is the `pd.DataFrame` returned by MOABB's evaluation.
+Both functions accept a `greater_is_better` flag (default `True`); set it to `False` for metrics like NLL or Brier score.
 
-## Repository structure
+Each dataset is treated as an independent study and each pipeline as a treatment. Pairwise mean differences are computed per fold, then aggregated per dataset before being passed to R.
 
-- [`docker/`](docker/) — R environment and Dockerfile
-- [`python/`](python/) — PyPI package
+## Development
 
-## Docs
+**Lint and format Python:**
 
 ```bash
-pdoc python/src/moabbr --output-dir docs
+ruff check moabbr
+ruff format moabbr
+```
+
+**Lint and format SQL:**
+
+```bash
+sqlfluff lint moabbr
+sqlfluff fix moabbr
+```
+
+**Generate docs:**
+
+```bash
+pdoc moabbr --output-dir docs
 ```
