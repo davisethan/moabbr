@@ -1,0 +1,35 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/ruff-action@v3
+        with:
+          args: check python/src
+      - uses: astral-sh/ruff-action@v3
+        with:
+          args: format --check python/src
+
+  r:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - run: Rscript -e 'install.packages(c("lintr", "styler"))'
+      - run: Rscript -e 'if (length(lintr::lint_dir("docker/src")) > 0) stop("linting failed")'
+      - run: Rscript -e 'styler::style_dir("docker/src", dry = "fail")'
+
+  sql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install sqlfluff
+      - run: sqlfluff lint docker/src --dialect duckdb
