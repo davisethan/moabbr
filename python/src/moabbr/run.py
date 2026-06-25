@@ -42,17 +42,13 @@ def nma(results: pd.DataFrame, greater_is_better: bool = True) -> dict:
             for metrics like NLL or Brier score. Affects P-score ranking.
 
     Returns:
-        A dict with the following keys:
-
-        - **p_scores** (`dict[str, float]`): P-score per pipeline. Higher is
-          better. Frequentist analogue of SUCRA.
-        - **league** (`dict`): Pairwise league table with keys `md`, `lower`,
-          `upper` (95% CI), `z`, and `pval` (two-sided).
-        - **heterogeneity** (`dict`): `tau2`, `tau` (DL point estimates);
-          `i2`, `i2_lower`, `i2_upper` (95% CI); `q`, `q_df`, `q_pval`.
-        - **prediction** (`dict`): Prediction interval matrix (`lower`,
-          `upper`) on the outcome scale — expected range of true effects in a
-          new dataset.
+        A dict with keys **p_scores** (`dict[str, float]`, P-score per
+        pipeline, higher is better, frequentist analogue of SUCRA),
+        **league** (`dict`, pairwise table with `md`, `lower`, `upper`,
+        `z`, `pval`), **heterogeneity** (`dict`, `tau2`, `tau`, `i2`,
+        `i2_lower`, `i2_upper`, `q`, `q_df`, `q_pval`), and **prediction**
+        (`dict`, prediction interval matrix `lower`/`upper` on the outcome
+        scale).
     """
     return _run("nma", results, greater_is_better)
 
@@ -74,17 +70,11 @@ def bnma(results: pd.DataFrame, greater_is_better: bool = True) -> dict:
             for metrics like NLL or Brier score. Affects SUCRA ranking.
 
     Returns:
-        A dict with the following keys:
-
-        - **sucra** (`dict[str, float]`): SUCRA per pipeline. Higher is
-          better. Bayesian analogue of P-scores.
-        - **league** (`dict`): Pairwise league table with keys `md` (posterior
-          median), `lower`, `upper` (95% credible intervals). There is a 95%
-          posterior probability the true effect lies within this range.
-        - **heterogeneity** (`dict`): `sd` (posterior median of between-study
-          SD, Bayesian analogue of tau), `sd_lower`, `sd_upper` (95% credible
-          interval).
-        - **convergence** (`dict`): `rhat_max` (< 1.01), `ess_bulk_min`
-          (> 400), `ess_tail_min` (> 400).
+        A dict with keys **sucra** (`dict[str, float]`, SUCRA per pipeline,
+        higher is better, Bayesian analogue of P-scores), **league** (`dict`,
+        pairwise table with `md` posterior median, `lower`/`upper` 95%
+        credible intervals), **heterogeneity** (`dict`, `sd`, `sd_lower`,
+        `sd_upper`), and **convergence** (`dict`, `rhat_max`, `ess_bulk_min`,
+        `ess_tail_min`).
     """
     return _run("bnma", results, greater_is_better)
