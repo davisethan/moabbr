@@ -7,6 +7,6 @@ Compares BCI decoding pipelines across datasets using frequentist NMA
 Source: [github.com/davisethan/moabbr](https://github.com/davisethan/moabbr)
 """
 
-from .run import nma, bnma
+from .run import bnma, nma
 
 __all__ = [nma.__name__, bnma.__name__]
