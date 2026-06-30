@@ -23,10 +23,10 @@ paired AS (
 )
 
 SELECT
-    dataset AS study,
+    dataset AS studlab,
     REGEXP_REPLACE(pipeline_a, '[^A-Za-z0-9_]', '_', 'g') AS treat1,
     REGEXP_REPLACE(pipeline_b, '[^A-Za-z0-9_]', '_', 'g') AS treat2,
-    AVG(diff) AS md,
-    STDDEV_SAMP(diff) / SQRT(COUNT(*)) AS se
+    AVG(diff) AS "TE", -- noqa: RF05
+    STDDEV_SAMP(diff) / SQRT(COUNT(*)) AS "seTE" -- noqa: RF05
 FROM paired
 GROUP BY dataset, pipeline_a, pipeline_b
