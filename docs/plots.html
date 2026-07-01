@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Analysis" href="analysis.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="prev" title="Results" href="results.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>moabbr documentation</title>
+        <title>Plots - moabbr documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">moabbr  documentation</div></a>
+      <a href="index.html"><div class="brand">moabbr  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -181,7 +181,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <span class="sidebar-brand-text">moabbr  documentation</span>
   
@@ -197,9 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plots.html">Plots</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Plots</a></li>
 </ul>
 
 </div>
@@ -220,7 +220,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/index.md.txt" title="View this page">
+  <a class="muted-link" href="_sources/plots.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -238,40 +238,57 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="moabbr">
-<h1>moabbr<a class="headerlink" href="#moabbr" title="Link to this heading">¶</a></h1>
-<p><a class="reference external" href="https://neurotechx.github.io/moabb/">MOABB</a> interface to <a class="reference external" href="https://pypi.org/project/tombolo/">tombolo</a> for analysis of machine learning benchmarks in R.</p>
-<p>Each dataset is treated as an independent study and each pipeline as a treatment.</p>
-<p>Requires <a class="reference external" href="https://docs.docker.com/get-started/get-docker/">Docker</a> with the <a class="reference external" href="https://hub.docker.com/r/ethandavisecd/tombolo">tombolo</a> image pulled:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">ethandavisecd</span><span class="o">/</span><span class="n">tombolo</span><span class="p">:</span><span class="n">latest</span>
+          <section id="plots">
+<h1>Plots<a class="headerlink" href="#plots" title="Link to this heading">¶</a></h1>
+<p>Continuing the example from <a class="reference internal" href="results.html"><span class="std std-doc">Results</span></a>, using the <code class="docutils literal notranslate"><span class="pre">freq</span></code> and <code class="docutils literal notranslate"><span class="pre">bayes</span></code> dicts produced there. Datasets are treated as independent studies and pipelines as treatments, so every plot below compares CSP+LDA, TS+SVM, and MDM pairwise across the five MOABB datasets. Every function below returns a <code class="docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">moabbr.plots</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">league_table</span><span class="p">,</span>
+    <span class="n">forest_plot</span><span class="p">,</span>
+    <span class="n">ranking_plot</span><span class="p">,</span>
+    <span class="n">heterogeneity_table</span><span class="p">,</span>
+    <span class="n">prediction_table</span><span class="p">,</span>
+    <span class="n">convergence_table</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.nma"><code class="docutils literal notranslate"><span class="pre">nma()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.bnma"><code class="docutils literal notranslate"><span class="pre">bnma()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.ranking_plot"><code class="docutils literal notranslate"><span class="pre">ranking_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.league_table"><code class="docutils literal notranslate"><span class="pre">league_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.forest_plot"><code class="docutils literal notranslate"><span class="pre">forest_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.heterogeneity_table"><code class="docutils literal notranslate"><span class="pre">heterogeneity_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.prediction_table"><code class="docutils literal notranslate"><span class="pre">prediction_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.convergence_table"><code class="docutils literal notranslate"><span class="pre">convergence_table()</span></code></a></li>
-</ul>
-</li>
-</ul>
+<p>Horizontal bar chart ranking each pipeline by its rank score (P-score for NMA, SUCRA for BNMA). Both scores range from 0 to 1, and pipelines are sorted highest-to-lowest so the best-performing pipeline appears at the top. A score close to 1 means a pipeline tends to outperform the others across the pairwise comparisons; a value near 0 means the opposite.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ranking_plot</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+<span class="n">ranking_plot</span><span class="p">(</span><span class="n">bayes</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plots.html">Plots</a></li>
-</ul>
+<p><img alt="NMA Ranking Plot" src="_images/nma_ranking.png" />
+<img alt="BNMA Ranking Plot" src="_images/bnma_ranking.png" /></p>
+<p>Grid of pairwise pipeline comparisons, showing the mean difference (row minus column) and confidence or credible interval for each pair. Diagonal cells show the pipeline name rather than a self-comparison. NMA cells additionally include the p-value for that pairwise contrast; BNMA cells report only the credible interval, since there’s no Bayesian equivalent of a p-value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">league_table</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+<span class="n">league_table</span><span class="p">(</span><span class="n">bayes</span><span class="p">)</span>
+</pre></div>
 </div>
+<p><img alt="NMA League Table" src="_images/nma_league.png" />
+<img alt="BNMA League Table" src="_images/bnma_league.png" /></p>
+<p>Forest plot of every pipeline relative to a chosen reference, sorted by effect size. Here CSP+LDA is the reference, so each row shows how much better or worse the other pipelines perform relative to it, with a marker for the mean difference and whiskers for the interval. NMA intervals are labeled <code class="docutils literal notranslate"><span class="pre">[95%</span> <span class="pre">CI]</span></code>; BNMA intervals are labeled <code class="docutils literal notranslate"><span class="pre">[95%</span> <span class="pre">CrI]</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">forest_plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;CSP+LDA&quot;</span><span class="p">)</span>
+<span class="n">forest_plot</span><span class="p">(</span><span class="n">bayes</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;CSP+LDA&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="NMA Forest Plot" src="_images/nma_forest.png" />
+<img alt="BNMA Forest Plot" src="_images/bnma_forest.png" /></p>
+<p>Summary table of heterogeneity statistics (Q, p-value, I², and τ for NMA; posterior SD and 95% credible interval for BNMA). I² is the proportion of total variance attributable to between-dataset heterogeneity rather than sampling error, while τ (or its Bayesian analogue, the posterior SD) is the between-dataset standard deviation on the effect scale itself. A significant Q p-value or a large I² suggests the pipelines’ relative performance isn’t consistent across the five datasets.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">heterogeneity_table</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+<span class="n">heterogeneity_table</span><span class="p">(</span><span class="n">bayes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="NMA Heterogeneity Table" src="_images/nma_heterogeneity.png" />
+<img alt="BNMA Heterogeneity Table" src="_images/bnma_heterogeneity.png" /></p>
+<p>Grid of 95% prediction intervals for each pair of pipelines, applicable to NMA results only. Unlike the confidence intervals in the league table, which describe uncertainty in the estimated average effect, prediction intervals translate the between-dataset heterogeneity (τ) into the range of effects you’d expect on a new, unseen dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prediction_table</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="NMA Prediction Table" src="_images/nma_prediction.png" /></p>
+<p>Summary table of MCMC convergence diagnostics (max R-hat, min ESS bulk, and min ESS tail), applicable to BNMA results only. R-hat compares between-chain and within-chain variance and should be below 1.01; ESS bulk and tail estimate the effective number of independent posterior samples and should each exceed 400. Values outside these thresholds indicate the sampler hasn’t converged, and the posterior estimates above may be unreliable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">convergence_table</span><span class="p">(</span><span class="n">bayes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="BNMA Convergence Table" src="_images/bnma_convergence.png" /></p>
 </section>
 
         </article>
@@ -279,16 +296,18 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="analysis.html">
+          
+          <a class="prev-page" href="results.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
-                  <span>Next</span>
+                  <span>Previous</span>
                 </div>
-                <div class="title">Analysis</div>
+                
+                <div class="title">Results</div>
+                
               </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
