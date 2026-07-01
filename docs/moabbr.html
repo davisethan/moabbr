@@ -18,8 +18,14 @@
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
         <div>
 
+            <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
+                   pattern=".+" required>
 
 
+            <h2>Submodules</h2>
+            <ul>
+                    <li><a href="moabbr/plots.html">plots</a></li>
+            </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
@@ -45,31 +51,31 @@
                     <h1 class="modulename">
 moabbr    </h1>
 
-                        <div class="docstring"><p>Python interface to the moabbr Docker image for network meta-analysis of MOABB benchmarks.</p>
+                        <div class="docstring"><p><a href="https://neurotechx.github.io/moabb/">MOABB</a> interface to <a href="https://pypi.org/project/tombolo/">tombolo</a> for analysis of machine learning benchmarks.</p>
 
-<p>Compares BCI decoding pipelines across datasets using frequentist NMA
-(<code><a href="#nma">nma</a></code>) and Bayesian NMA (<code><a href="#bnma">bnma</a></code>) as a sensitivity analysis. Requires
-<a href="https://www.docker.com">Docker</a> with the moabbr image available locally.</p>
+<p>Requires Docker with the tombolo image pulled:</p>
 
-<p>Source: <a href="https://github.com/davisethan/moabbr">github.com/davisethan/moabbr</a></p>
+<pre><code>docker pull ethandavisecd/tombolo:latest
+</code></pre>
 </div>
 
                         <input id="mod-moabbr-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-moabbr-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;Python interface to the moabbr Docker image for network meta-analysis of MOABB benchmarks.</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;[MOABB](https://neurotechx.github.io/moabb/) interface to [tombolo](https://pypi.org/project/tombolo/) for analysis of machine learning benchmarks.</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">Compares BCI decoding pipelines across datasets using frequentist NMA</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">(`nma`) and Bayesian NMA (`bnma`) as a sensitivity analysis. Requires</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="sd">[Docker](https://www.docker.com) with the moabbr image available locally.</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">Source: [github.com/davisethan/moabbr](https://github.com/davisethan/moabbr)</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">Requires Docker with the tombolo image pulled:</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="sd">```</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">docker pull ethandavisecd/tombolo:latest</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">```</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.run</span><span class="w"> </span><span class="kn">import</span> <span class="n">nma</span><span class="p">,</span> <span class="n">bnma</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">nma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">bnma</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.run</span><span class="w"> </span><span class="kn">import</span> <span class="n">bnma</span><span class="p">,</span> <span class="n">nma</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">plots</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="s2">&quot;plots&quot;</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -85,56 +91,37 @@ moabbr    </h1>
 
     </div>
     <a class="headerlink" href="#nma"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="nma-38"><a href="#nma-38"><span class="linenos">38</span></a><span class="k">def</span><span class="w"> </span><span class="nf">nma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-</span><span id="nma-39"><a href="#nma-39"><span class="linenos">39</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run frequentist network meta-analysis via netmeta.</span>
-</span><span id="nma-40"><a href="#nma-40"><span class="linenos">40</span></a>
-</span><span id="nma-41"><a href="#nma-41"><span class="linenos">41</span></a><span class="sd">    Fits a random-effects NMA (DerSimonian-Laird heterogeneity, t-distribution</span>
-</span><span id="nma-42"><a href="#nma-42"><span class="linenos">42</span></a><span class="sd">    CIs) treating each dataset as an independent study and each pipeline as a</span>
-</span><span id="nma-43"><a href="#nma-43"><span class="linenos">43</span></a><span class="sd">    treatment. All pairwise comparisons are direct (fully-crossed benchmark).</span>
-</span><span id="nma-44"><a href="#nma-44"><span class="linenos">44</span></a>
-</span><span id="nma-45"><a href="#nma-45"><span class="linenos">45</span></a><span class="sd">    All league tables are keyed as `league[metric][row][col]`, where the value</span>
-</span><span id="nma-46"><a href="#nma-46"><span class="linenos">46</span></a><span class="sd">    represents row minus col. Diagonal entries are `null`.</span>
-</span><span id="nma-47"><a href="#nma-47"><span class="linenos">47</span></a>
-</span><span id="nma-48"><a href="#nma-48"><span class="linenos">48</span></a><span class="sd">    Parameters:</span>
-</span><span id="nma-49"><a href="#nma-49"><span class="linenos">49</span></a>
-</span><span id="nma-50"><a href="#nma-50"><span class="linenos">50</span></a><span class="sd">    - **results**: MOABB evaluation output with columns `dataset`, `pipeline`, `subject`, `score`.</span>
-</span><span id="nma-51"><a href="#nma-51"><span class="linenos">51</span></a><span class="sd">    - **greater_is_better**: Whether a higher score is better. Set to `False` for metrics like NLL or Brier score. Affects P-score ranking.</span>
-</span><span id="nma-52"><a href="#nma-52"><span class="linenos">52</span></a>
-</span><span id="nma-53"><a href="#nma-53"><span class="linenos">53</span></a><span class="sd">    Returns:</span>
-</span><span id="nma-54"><a href="#nma-54"><span class="linenos">54</span></a>
-</span><span id="nma-55"><a href="#nma-55"><span class="linenos">55</span></a><span class="sd">    - **p_scores** (`dict[str, float]`): P-score per pipeline. Higher is better. Frequentist analogue of SUCRA.</span>
-</span><span id="nma-56"><a href="#nma-56"><span class="linenos">56</span></a><span class="sd">    - **league** (`dict`): Pairwise table with keys `md`, `lower`, `upper` (95% CI), `z`, `pval` (two-sided).</span>
-</span><span id="nma-57"><a href="#nma-57"><span class="linenos">57</span></a><span class="sd">    - **heterogeneity** (`dict`): `tau2`, `tau` (DL point estimates); `i2`, `i2_lower`, `i2_upper` (95% CI); `q`, `q_df`, `q_pval`.</span>
-</span><span id="nma-58"><a href="#nma-58"><span class="linenos">58</span></a><span class="sd">    - **prediction** (`dict`): Prediction interval matrix `lower`/`upper` on the outcome scale — expected range of true effects in a new dataset.</span>
-</span><span id="nma-59"><a href="#nma-59"><span class="linenos">59</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="nma-60"><a href="#nma-60"><span class="linenos">60</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="n">_sql</span><span class="p">(</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">),</span> <span class="n">greater_is_better</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="nma-16"><a href="#nma-16"><span class="linenos">16</span></a><span class="k">def</span><span class="w"> </span><span class="nf">nma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="nma-17"><a href="#nma-17"><span class="linenos">17</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a frequentist random-effects network meta-analysis on MOABB evaluation results.</span>
+</span><span id="nma-18"><a href="#nma-18"><span class="linenos">18</span></a>
+</span><span id="nma-19"><a href="#nma-19"><span class="linenos">19</span></a><span class="sd">    Parameters:</span>
+</span><span id="nma-20"><a href="#nma-20"><span class="linenos">20</span></a><span class="sd">    - `results`: MOABB evaluation DataFrame with columns `dataset`, `pipeline`, `subject`, `score`.</span>
+</span><span id="nma-21"><a href="#nma-21"><span class="linenos">21</span></a><span class="sd">    - `greater_is_better`: If `True`, higher scores rank better (e.g. accuracy).</span>
+</span><span id="nma-22"><a href="#nma-22"><span class="linenos">22</span></a><span class="sd">      If `False`, lower scores rank better (e.g. error rate).</span>
+</span><span id="nma-23"><a href="#nma-23"><span class="linenos">23</span></a>
+</span><span id="nma-24"><a href="#nma-24"><span class="linenos">24</span></a><span class="sd">    Each dataset is treated as an independent study and each pipeline as a treatment.</span>
+</span><span id="nma-25"><a href="#nma-25"><span class="linenos">25</span></a><span class="sd">    Pairwise mean differences are computed per subject, then aggregated per dataset.</span>
+</span><span id="nma-26"><a href="#nma-26"><span class="linenos">26</span></a>
+</span><span id="nma-27"><a href="#nma-27"><span class="linenos">27</span></a><span class="sd">    Returns the result dict from `tombolo.nma`. See [tombolo](https://pypi.org/project/tombolo/) for the full return structure.</span>
+</span><span id="nma-28"><a href="#nma-28"><span class="linenos">28</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="nma-29"><a href="#nma-29"><span class="linenos">29</span></a>    <span class="k">return</span> <span class="n">tombolo</span><span class="o">.</span><span class="n">nma</span><span class="p">(</span><span class="n">_sql</span><span class="p">(</span><span class="s2">&quot;nma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">),</span> <span class="n">greater_is_better</span><span class="p">)</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Run frequentist network meta-analysis via netmeta.</p>
-
-<p>Fits a random-effects NMA (DerSimonian-Laird heterogeneity, t-distribution
-CIs) treating each dataset as an independent study and each pipeline as a
-treatment. All pairwise comparisons are direct (fully-crossed benchmark).</p>
-
-<p>All league tables are keyed as <code>league[metric][row][col]</code>, where the value
-represents row minus col. Diagonal entries are <code>null</code>.</p>
+            <div class="docstring"><p>Run a frequentist random-effects network meta-analysis on MOABB evaluation results.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>results</strong>: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
-<li><strong>greater_is_better</strong>: Whether a higher score is better. Set to <code>False</code> for metrics like NLL or Brier score. Affects P-score ranking.</li>
+<li><code>results</code>: MOABB evaluation DataFrame with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
+<li><code>greater_is_better</code>: If <code>True</code>, higher scores rank better (e.g. accuracy).
+If <code>False</code>, lower scores rank better (e.g. error rate).</li>
 </ul>
 
-<p>Returns:</p>
+<p>Each dataset is treated as an independent study and each pipeline as a treatment.
+Pairwise mean differences are computed per subject, then aggregated per dataset.</p>
 
-<ul>
-<li><strong>p_scores</strong> (<code>dict[str, float]</code>): P-score per pipeline. Higher is better. Frequentist analogue of SUCRA.</li>
-<li><strong>league</strong> (<code>dict</code>): Pairwise table with keys <code>md</code>, <code>lower</code>, <code>upper</code> (95% CI), <code>z</code>, <code>pval</code> (two-sided).</li>
-<li><strong>heterogeneity</strong> (<code>dict</code>): <code>tau2</code>, <code>tau</code> (DL point estimates); <code>i2</code>, <code>i2_lower</code>, <code>i2_upper</code> (95% CI); <code>q</code>, <code>q_df</code>, <code>q_pval</code>.</li>
-<li><strong>prediction</strong> (<code>dict</code>): Prediction interval matrix <code>lower</code>/<code>upper</code> on the outcome scale — expected range of true effects in a new dataset.</li>
-</ul>
+<p>Returns the result dict from <code>tombolo.nma</code>. See <a href="https://pypi.org/project/tombolo/">tombolo</a> for the full return structure.</p>
 </div>
 
 
@@ -150,60 +137,222 @@ represents row minus col. Diagonal entries are <code>null</code>.</p>
 
     </div>
     <a class="headerlink" href="#bnma"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="bnma-63"><a href="#bnma-63"><span class="linenos">63</span></a><span class="k">def</span><span class="w"> </span><span class="nf">bnma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-</span><span id="bnma-64"><a href="#bnma-64"><span class="linenos">64</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run Bayesian network meta-analysis via gemtc.</span>
-</span><span id="bnma-65"><a href="#bnma-65"><span class="linenos">65</span></a>
-</span><span id="bnma-66"><a href="#bnma-66"><span class="linenos">66</span></a><span class="sd">    Fits a random-effects NMA (normal likelihood, identity link, 4 chains x</span>
-</span><span id="bnma-67"><a href="#bnma-67"><span class="linenos">67</span></a><span class="sd">    100k iterations, thinning 10) via JAGS. Used as a sensitivity analysis</span>
-</span><span id="bnma-68"><a href="#bnma-68"><span class="linenos">68</span></a><span class="sd">    alongside `nma`.</span>
-</span><span id="bnma-69"><a href="#bnma-69"><span class="linenos">69</span></a>
-</span><span id="bnma-70"><a href="#bnma-70"><span class="linenos">70</span></a><span class="sd">    All league tables are keyed as `league[metric][row][col]`, where the value</span>
-</span><span id="bnma-71"><a href="#bnma-71"><span class="linenos">71</span></a><span class="sd">    represents row minus col. Diagonal entries are `null`.</span>
-</span><span id="bnma-72"><a href="#bnma-72"><span class="linenos">72</span></a>
-</span><span id="bnma-73"><a href="#bnma-73"><span class="linenos">73</span></a><span class="sd">    Parameters:</span>
-</span><span id="bnma-74"><a href="#bnma-74"><span class="linenos">74</span></a>
-</span><span id="bnma-75"><a href="#bnma-75"><span class="linenos">75</span></a><span class="sd">    - **results**: MOABB evaluation output with columns `dataset`, `pipeline`, `subject`, `score`.</span>
-</span><span id="bnma-76"><a href="#bnma-76"><span class="linenos">76</span></a><span class="sd">    - **greater_is_better**: Whether a higher score is better. Set to `False` for metrics like NLL or Brier score. Affects SUCRA ranking.</span>
-</span><span id="bnma-77"><a href="#bnma-77"><span class="linenos">77</span></a>
-</span><span id="bnma-78"><a href="#bnma-78"><span class="linenos">78</span></a><span class="sd">    Returns:</span>
-</span><span id="bnma-79"><a href="#bnma-79"><span class="linenos">79</span></a>
-</span><span id="bnma-80"><a href="#bnma-80"><span class="linenos">80</span></a><span class="sd">    - **sucra** (`dict[str, float]`): SUCRA per pipeline. Higher is better. Bayesian analogue of P-scores.</span>
-</span><span id="bnma-81"><a href="#bnma-81"><span class="linenos">81</span></a><span class="sd">    - **league** (`dict`): Pairwise table with keys `md` (posterior median), `lower`/`upper` (95% credible intervals).</span>
-</span><span id="bnma-82"><a href="#bnma-82"><span class="linenos">82</span></a><span class="sd">    - **heterogeneity** (`dict`): `sd` (posterior median of between-study SD, Bayesian analogue of tau), `sd_lower`, `sd_upper` (95% credible interval).</span>
-</span><span id="bnma-83"><a href="#bnma-83"><span class="linenos">83</span></a><span class="sd">    - **convergence** (`dict`): `rhat_max` (&lt; 1.01), `ess_bulk_min` (&gt; 400), `ess_tail_min` (&gt; 400).</span>
-</span><span id="bnma-84"><a href="#bnma-84"><span class="linenos">84</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="bnma-85"><a href="#bnma-85"><span class="linenos">85</span></a>    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="n">_sql</span><span class="p">(</span><span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">),</span> <span class="n">greater_is_better</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="bnma-32"><a href="#bnma-32"><span class="linenos">32</span></a><span class="k">def</span><span class="w"> </span><span class="nf">bnma</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</span><span id="bnma-33"><a href="#bnma-33"><span class="linenos">33</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a Bayesian random-effects network meta-analysis on MOABB evaluation results.</span>
+</span><span id="bnma-34"><a href="#bnma-34"><span class="linenos">34</span></a>
+</span><span id="bnma-35"><a href="#bnma-35"><span class="linenos">35</span></a><span class="sd">    Parameters:</span>
+</span><span id="bnma-36"><a href="#bnma-36"><span class="linenos">36</span></a><span class="sd">    - `results`: MOABB evaluation DataFrame with columns `dataset`, `pipeline`, `subject`, `score`.</span>
+</span><span id="bnma-37"><a href="#bnma-37"><span class="linenos">37</span></a><span class="sd">    - `greater_is_better`: If `True`, higher scores rank better (e.g. accuracy).</span>
+</span><span id="bnma-38"><a href="#bnma-38"><span class="linenos">38</span></a><span class="sd">      If `False`, lower scores rank better (e.g. error rate).</span>
+</span><span id="bnma-39"><a href="#bnma-39"><span class="linenos">39</span></a>
+</span><span id="bnma-40"><a href="#bnma-40"><span class="linenos">40</span></a><span class="sd">    Each dataset is treated as an independent study and each pipeline as a treatment.</span>
+</span><span id="bnma-41"><a href="#bnma-41"><span class="linenos">41</span></a><span class="sd">    Per-subject scores are averaged per dataset before being passed to the model.</span>
+</span><span id="bnma-42"><a href="#bnma-42"><span class="linenos">42</span></a>
+</span><span id="bnma-43"><a href="#bnma-43"><span class="linenos">43</span></a><span class="sd">    Returns the result dict from `tombolo.bnma`. See [tombolo](https://pypi.org/project/tombolo/) for the full return structure.</span>
+</span><span id="bnma-44"><a href="#bnma-44"><span class="linenos">44</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="bnma-45"><a href="#bnma-45"><span class="linenos">45</span></a>    <span class="k">return</span> <span class="n">tombolo</span><span class="o">.</span><span class="n">bnma</span><span class="p">(</span><span class="n">_sql</span><span class="p">(</span><span class="s2">&quot;bnma&quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">),</span> <span class="n">greater_is_better</span><span class="p">)</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Run Bayesian network meta-analysis via gemtc.</p>
-
-<p>Fits a random-effects NMA (normal likelihood, identity link, 4 chains x
-100k iterations, thinning 10) via JAGS. Used as a sensitivity analysis
-alongside <code><a href="#nma">nma</a></code>.</p>
-
-<p>All league tables are keyed as <code>league[metric][row][col]</code>, where the value
-represents row minus col. Diagonal entries are <code>null</code>.</p>
+            <div class="docstring"><p>Run a Bayesian random-effects network meta-analysis on MOABB evaluation results.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>results</strong>: MOABB evaluation output with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
-<li><strong>greater_is_better</strong>: Whether a higher score is better. Set to <code>False</code> for metrics like NLL or Brier score. Affects SUCRA ranking.</li>
+<li><code>results</code>: MOABB evaluation DataFrame with columns <code>dataset</code>, <code>pipeline</code>, <code>subject</code>, <code>score</code>.</li>
+<li><code>greater_is_better</code>: If <code>True</code>, higher scores rank better (e.g. accuracy).
+If <code>False</code>, lower scores rank better (e.g. error rate).</li>
 </ul>
 
-<p>Returns:</p>
+<p>Each dataset is treated as an independent study and each pipeline as a treatment.
+Per-subject scores are averaged per dataset before being passed to the model.</p>
 
-<ul>
-<li><strong>sucra</strong> (<code>dict[str, float]</code>): SUCRA per pipeline. Higher is better. Bayesian analogue of P-scores.</li>
-<li><strong>league</strong> (<code>dict</code>): Pairwise table with keys <code>md</code> (posterior median), <code>lower</code>/<code>upper</code> (95% credible intervals).</li>
-<li><strong>heterogeneity</strong> (<code>dict</code>): <code>sd</code> (posterior median of between-study SD, Bayesian analogue of tau), <code>sd_lower</code>, <code>sd_upper</code> (95% credible interval).</li>
-<li><strong>convergence</strong> (<code>dict</code>): <code>rhat_max</code> (&lt; 1.01), <code>ess_bulk_min</code> (&gt; 400), <code>ess_tail_min</code> (&gt; 400).</li>
-</ul>
+<p>Returns the result dict from <code>tombolo.bnma</code>. See <a href="https://pypi.org/project/tombolo/">tombolo</a> for the full return structure.</p>
 </div>
 
 
                 </section>
     </main>
-</body>
+<script>
+    function escapeHTML(html) {
+        return document.createElement('div').appendChild(document.createTextNode(html)).parentNode.innerHTML;
+    }
+
+    const originalContent = document.querySelector("main.pdoc");
+    let currentContent = originalContent;
+
+    function setContent(innerHTML) {
+        let elem;
+        if (innerHTML) {
+            elem = document.createElement("main");
+            elem.classList.add("pdoc");
+            elem.innerHTML = innerHTML;
+        } else {
+            elem = originalContent;
+        }
+        if (currentContent !== elem) {
+            currentContent.replaceWith(elem);
+            currentContent = elem;
+        }
+    }
+
+    function getSearchTerm() {
+        return (new URL(window.location)).searchParams.get("search");
+    }
+
+    const searchBox = document.querySelector(".pdoc input[type=search]");
+    searchBox.addEventListener("input", function () {
+        let url = new URL(window.location);
+        if (searchBox.value.trim()) {
+            url.hash = "";
+            url.searchParams.set("search", searchBox.value);
+        } else {
+            url.searchParams.delete("search");
+        }
+        history.replaceState("", "", url.toString());
+        onInput();
+    });
+    window.addEventListener("popstate", onInput);
+
+
+    let search, searchErr;
+
+    async function initialize() {
+        try {
+            search = await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.async = true;
+                script.onload = () => resolve(window.pdocSearch);
+                script.onerror = (e) => reject(e);
+                script.src = "search.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+            });
+        } catch (e) {
+            console.error("Cannot fetch pdoc search index");
+            searchErr = "Cannot fetch search index.";
+        }
+        onInput();
+
+        document.querySelector("nav.pdoc").addEventListener("click", e => {
+            if (e.target.hash) {
+                searchBox.value = "";
+                searchBox.dispatchEvent(new Event("input"));
+            }
+        });
+    }
+
+    function onInput() {
+        setContent((() => {
+            const term = getSearchTerm();
+            if (!term) {
+                return null
+            }
+            if (searchErr) {
+                return `<h3>Error: ${searchErr}</h3>`
+            }
+            if (!search) {
+                return "<h3>Searching...</h3>"
+            }
+
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+
+            const results = search(term);
+
+            let html;
+            if (results.length === 0) {
+                html = `No search results for '${escapeHTML(term)}'.`
+            } else {
+                html = `<h4>${results.length} search result${results.length > 1 ? "s" : ""} for '${escapeHTML(term)}'.</h4>`;
+            }
+            for (let result of results.slice(0, 10)) {
+                let doc = result.doc;
+                let url = `${doc.modulename.replaceAll(".", "/")}.html`;
+                if (doc.qualname) {
+                    url += `#${doc.qualname}`;
+                }
+
+                let heading;
+                switch (result.doc.kind) {
+                    case "function":
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
+                        break;
+                    case "class":
+                        heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
+                        if (doc.bases)
+                            heading += `<wbr>(<span class="base">${doc.bases}</span>)`;
+                        heading += `:`;
+                        break;
+                    case "variable":
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        if (doc.annotation)
+                            heading += `<span class="annotation">${doc.annotation}</span>`;
+                        if (doc.default_value)
+                            heading += `<span class="default_value"> = ${doc.default_value}</span>`;
+                        break;
+                    default:
+                        heading = `<span class="name">${doc.fullname}</span>`;
+                        break;
+                }
+                html += `
+                        <section class="search-result">
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
+                        <div class="docstring">${doc.doc}</div>
+                        </section>
+                    `;
+
+            }
+            return html;
+        })());
+    }
+
+    if (getSearchTerm()) {
+        initialize();
+        searchBox.value = getSearchTerm();
+        onInput();
+    } else {
+        searchBox.addEventListener("focus", initialize, {once: true});
+    }
+
+    searchBox.addEventListener("keydown", e => {
+        if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+            let focused = currentContent.querySelector(".search-result.focused");
+            if (!focused) {
+                currentContent.querySelector(".search-result").classList.add("focused");
+            } else if (
+                e.key === "ArrowDown"
+                && focused.nextElementSibling
+                && focused.nextElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.nextElementSibling.classList.add("focused");
+                focused.nextElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "ArrowUp"
+                && focused.previousElementSibling
+                && focused.previousElementSibling.classList.contains("search-result")
+            ) {
+                focused.classList.remove("focused");
+                focused.previousElementSibling.classList.add("focused");
+                focused.previousElementSibling.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "nearest"
+                });
+            } else if (
+                e.key === "Enter"
+            ) {
+                focused.querySelector("a").click();
+            }
+        }
+    });
+</script></body>
 </html>

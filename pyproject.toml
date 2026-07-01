@@ -4,7 +4,25 @@ build-backend = "hatchling.build"
 
 [project]
 name = "moabbr"
-version = "0.0.2"
+version = "0.1.0"
+description = "MOABB interface to tombolo for analysis of ML benchmarks"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Ethan Davis", email = "ethandavisecd@gmail.com" }]
+requires-python = ">=3.9"
+keywords = ["MOABB", "BCI", "EEG", "ML", "R"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = ["tombolo", "duckdb", "pandas"]
+
+[project.urls]
+Source = "https://github.com/davisethan/moabbr"
+Homepage = "https://davisethan.github.io/moabbr"
 
 [tool.hatch.build.targets.wheel]
 packages = ["moabbr"]
