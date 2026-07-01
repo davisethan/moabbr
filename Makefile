@@ -2,6 +2,7 @@
 docs:
 	rm -rf docs
 	sphinx-build -b html sphinx docs
+	touch docs/.nojekyll
 
 .PHONY: publish
 publish:
