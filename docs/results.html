@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Analysis" href="analysis.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Plots" href="plots.html"><link rel="prev" title="Plotting" href="plotting.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>moabbr documentation</title>
+        <title>Results - moabbr documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">moabbr  documentation</div></a>
+      <a href="index.html"><div class="brand">moabbr  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -181,7 +181,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <span class="sidebar-brand-text">moabbr  documentation</span>
   
@@ -197,8 +197,8 @@
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plots.html">Plots</a></li>
 </ul>
 
@@ -220,7 +220,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/index.md.txt" title="View this page">
+  <a class="muted-link" href="_sources/results.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -238,39 +238,55 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="moabbr">
-<h1>moabbr<a class="headerlink" href="#moabbr" title="Link to this heading">¶</a></h1>
-<p><a class="reference external" href="https://neurotechx.github.io/moabb/">MOABB</a> interface to <a class="reference external" href="https://pypi.org/project/tombolo/">tombolo</a> for analysis of machine learning benchmarks in R.</p>
-<p>Each dataset is treated as an independent study and each pipeline as a treatment.</p>
-<p>Requires <a class="reference external" href="https://docs.docker.com/get-started/get-docker/">Docker</a> with the <a class="reference external" href="https://hub.docker.com/r/ethandavisecd/tombolo">tombolo</a> image pulled:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">ethandavisecd</span><span class="o">/</span><span class="n">tombolo</span><span class="p">:</span><span class="n">latest</span>
+          <section id="results">
+<h1>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h1>
+<p>Evaluates three pipelines (CSP+LDA, TS+SVM, MDM) across five motor imagery datasets with
+MOABB’s <code class="docutils literal notranslate"><span class="pre">CrossSubjectEvaluation</span></code>, then runs both a frequentist (<code class="docutils literal notranslate"><span class="pre">nma</span></code>) and a Bayesian
+(<code class="docutils literal notranslate"><span class="pre">bnma</span></code>) network meta-analysis on the resulting evaluation results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">BNCI2014_001</span><span class="p">,</span> <span class="n">BNCI2014_004</span><span class="p">,</span> <span class="n">Cho2017</span><span class="p">,</span> <span class="n">Lee2019_MI</span><span class="p">,</span> <span class="n">PhysionetMI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.evaluations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CrossSubjectEvaluation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.paradigms</span><span class="w"> </span><span class="kn">import</span> <span class="n">LeftRightImagery</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabbr</span><span class="w"> </span><span class="kn">import</span> <span class="n">nma</span><span class="p">,</span> <span class="n">bnma</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">MDM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.estimation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Covariances</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.spatialfilters</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.tangentspace</span><span class="w"> </span><span class="kn">import</span> <span class="n">TangentSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.discriminant_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span> <span class="k">as</span> <span class="n">LDA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="n">pipelines</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;CSP+LDA&quot;</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span>
+        <span class="n">Covariances</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="s2">&quot;oas&quot;</span><span class="p">),</span>
+        <span class="n">CSP</span><span class="p">(</span><span class="n">nfilter</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+        <span class="n">LDA</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">&quot;svd&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;TS+SVM&quot;</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span>
+        <span class="n">Covariances</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="s2">&quot;oas&quot;</span><span class="p">),</span>
+        <span class="n">TangentSpace</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;riemann&quot;</span><span class="p">),</span>
+        <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;MDM&quot;</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">Covariances</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="s2">&quot;oas&quot;</span><span class="p">),</span> <span class="n">MDM</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;riemann&quot;</span><span class="p">)),</span>
+<span class="p">}</span>
+
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">BNCI2014_001</span><span class="p">(),</span> <span class="n">BNCI2014_004</span><span class="p">(),</span> <span class="n">Cho2017</span><span class="p">(),</span> <span class="n">Lee2019_MI</span><span class="p">(),</span> <span class="n">PhysionetMI</span><span class="p">()]</span>
+<span class="n">paradigm</span> <span class="o">=</span> <span class="n">LeftRightImagery</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="n">CrossSubjectEvaluation</span><span class="p">(</span>
+    <span class="n">paradigm</span><span class="o">=</span><span class="n">paradigm</span><span class="p">,</span>
+    <span class="n">datasets</span><span class="o">=</span><span class="n">datasets</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">n_splits</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">participants</span><span class="o">.</span><span class="n">n_subjects</span> <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">),</span>
+    <span class="n">cache_config</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">use</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_array</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">overwrite_array</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">pipelines</span><span class="p">)</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">nma</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">bayes</span> <span class="o">=</span> <span class="n">bnma</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.nma"><code class="docutils literal notranslate"><span class="pre">nma()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.bnma"><code class="docutils literal notranslate"><span class="pre">bnma()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.ranking_plot"><code class="docutils literal notranslate"><span class="pre">ranking_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.league_table"><code class="docutils literal notranslate"><span class="pre">league_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.forest_plot"><code class="docutils literal notranslate"><span class="pre">forest_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.heterogeneity_table"><code class="docutils literal notranslate"><span class="pre">heterogeneity_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.prediction_table"><code class="docutils literal notranslate"><span class="pre">prediction_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.convergence_table"><code class="docutils literal notranslate"><span class="pre">convergence_table()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plots.html">Plots</a></li>
-</ul>
 </div>
 </section>
 
@@ -279,16 +295,26 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="analysis.html">
+          <a class="next-page" href="plots.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Analysis</div>
+                <div class="title">Plots</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          
+          <a class="prev-page" href="plotting.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Plotting</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">

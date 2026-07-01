@@ -1,6 +1,8 @@
-"""[MOABB](https://neurotechx.github.io/moabb/) interface to [tombolo](https://pypi.org/project/tombolo/) for analysis of machine learning benchmarks.
+"""Analyze [MOABB](https://neurotechx.github.io/moabb/) machine learning benchmarks with R.
 
-Requires Docker with the tombolo image pulled:
+Adapts MOABB evaluation results for the [tombolo](https://pypi.org/project/tombolo/) Python package.
+
+Requires Docker with the [tombolo](https://hub.docker.com/r/ethandavisecd/tombolo) image pulled:
 
 ```
 docker pull ethandavisecd/tombolo:latest

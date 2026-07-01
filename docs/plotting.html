@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Analysis" href="analysis.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Results" href="results.html"><link rel="prev" title="Analysis" href="analysis.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>moabbr documentation</title>
+        <title>Plotting - moabbr documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">moabbr  documentation</div></a>
+      <a href="index.html"><div class="brand">moabbr  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -173,7 +173,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -181,7 +181,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   <span class="sidebar-brand-text">moabbr  documentation</span>
   
@@ -192,9 +192,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Plotting</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -220,7 +220,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/index.md.txt" title="View this page">
+  <a class="muted-link" href="_sources/plotting.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -233,45 +233,86 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="moabbr">
-<h1>moabbr<a class="headerlink" href="#moabbr" title="Link to this heading">¶</a></h1>
-<p><a class="reference external" href="https://neurotechx.github.io/moabb/">MOABB</a> interface to <a class="reference external" href="https://pypi.org/project/tombolo/">tombolo</a> for analysis of machine learning benchmarks in R.</p>
-<p>Each dataset is treated as an independent study and each pipeline as a treatment.</p>
-<p>Requires <a class="reference external" href="https://docs.docker.com/get-started/get-docker/">Docker</a> with the <a class="reference external" href="https://hub.docker.com/r/ethandavisecd/tombolo">tombolo</a> image pulled:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">ethandavisecd</span><span class="o">/</span><span class="n">tombolo</span><span class="p">:</span><span class="n">latest</span>
-</pre></div>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="analysis.html">Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.nma"><code class="docutils literal notranslate"><span class="pre">nma()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html#moabbr.bnma"><code class="docutils literal notranslate"><span class="pre">bnma()</span></code></a></li>
+          <section id="plotting">
+<h1>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.ranking_plot">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">ranking_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.ranking_plot" title="Link to this definition">¶</a></dt>
+<dd><p>Horizontal bar chart of treatment rankings.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.nma</cite> or <cite>tombolo.bnma</cite>.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.ranking_plot"><code class="docutils literal notranslate"><span class="pre">ranking_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.league_table"><code class="docutils literal notranslate"><span class="pre">league_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.forest_plot"><code class="docutils literal notranslate"><span class="pre">forest_plot()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.heterogeneity_table"><code class="docutils literal notranslate"><span class="pre">heterogeneity_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.prediction_table"><code class="docutils literal notranslate"><span class="pre">prediction_table()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#moabbr.plots.convergence_table"><code class="docutils literal notranslate"><span class="pre">convergence_table()</span></code></a></li>
+<p>Returns treatments sorted by rank score (P-score for NMA, SUCRA for BNMA).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.league_table">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">league_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.league_table" title="Link to this definition">¶</a></dt>
+<dd><p>Grid of pairwise treatment comparisons.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.nma</cite> or <cite>tombolo.bnma</cite>.</p></li>
 </ul>
-</li>
+<p>Each cell shows the mean difference and confidence (or credible) interval for the row
+treatment relative to the column treatment. The contrast is row minus column. Diagonal
+cells show the treatment name. P-values are included for NMA results.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.forest_plot">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">forest_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.forest_plot" title="Link to this definition">¶</a></dt>
+<dd><p>Forest plot of all treatments relative to a reference.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.nma</cite> or <cite>tombolo.bnma</cite>.</p></li>
+<li><p><cite>reference</cite>: Name of the reference treatment. All other treatments are plotted
+relative to it, sorted by effect size. Non-alphanumeric characters are normalized to underscores.</p></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="results.html">Results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plots.html">Plots</a></li>
+<p>Returns mean differences and confidence (or credible) intervals for each treatment
+versus the reference. P-values are included for NMA results.</p>
+<p>Raises <cite>RuntimeError</cite> if <cite>reference</cite> is not found in the data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.heterogeneity_table">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">heterogeneity_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.heterogeneity_table" title="Link to this definition">¶</a></dt>
+<dd><p>Summary table of heterogeneity statistics.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.nma</cite> or <cite>tombolo.bnma</cite>.</p></li>
 </ul>
-</div>
+<p>For NMA results: Q statistic, p-value, I², and τ.
+For BNMA results: posterior SD and 95% credible interval.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.prediction_table">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">prediction_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.prediction_table" title="Link to this definition">¶</a></dt>
+<dd><p>Grid of prediction intervals. Only applicable to NMA results.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.nma</cite>.</p></li>
+</ul>
+<p>Each cell shows the 95% prediction interval for the row treatment relative to the column treatment.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="moabbr.plots.convergence_table">
+<span class="sig-prename descclassname"><span class="pre">moabbr.plots.</span></span><span class="sig-name descname"><span class="pre">convergence_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#moabbr.plots.convergence_table" title="Link to this definition">¶</a></dt>
+<dd><p>Summary table of MCMC convergence diagnostics. Only applicable to BNMA results.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><cite>data</cite>: Result dict from <cite>tombolo.bnma</cite>.</p></li>
+</ul>
+<p>Returns R-hat (max), ESS bulk (min), and ESS tail (min) across all model parameters.</p>
+</dd></dl>
+
 </section>
 
         </article>
@@ -279,16 +320,26 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="analysis.html">
+          <a class="next-page" href="results.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Analysis</div>
+                <div class="title">Results</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          
+          <a class="prev-page" href="analysis.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Analysis</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -307,8 +358,32 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Plotting</a><ul>
+<li><a class="reference internal" href="#moabbr.plots.ranking_plot"><code class="docutils literal notranslate"><span class="pre">ranking_plot()</span></code></a></li>
+<li><a class="reference internal" href="#moabbr.plots.league_table"><code class="docutils literal notranslate"><span class="pre">league_table()</span></code></a></li>
+<li><a class="reference internal" href="#moabbr.plots.forest_plot"><code class="docutils literal notranslate"><span class="pre">forest_plot()</span></code></a></li>
+<li><a class="reference internal" href="#moabbr.plots.heterogeneity_table"><code class="docutils literal notranslate"><span class="pre">heterogeneity_table()</span></code></a></li>
+<li><a class="reference internal" href="#moabbr.plots.prediction_table"><code class="docutils literal notranslate"><span class="pre">prediction_table()</span></code></a></li>
+<li><a class="reference internal" href="#moabbr.plots.convergence_table"><code class="docutils literal notranslate"><span class="pre">convergence_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

@@ -23,6 +23,7 @@ dependencies = ["tombolo", "duckdb", "pandas"]
 [project.urls]
 Source = "https://github.com/davisethan/moabbr"
 Homepage = "https://davisethan.github.io/moabbr"
+"Docker Hub" = "https://hub.docker.com/r/ethandavisecd/tombolo"
 
 [tool.hatch.build.targets.wheel]
 packages = ["moabbr"]
