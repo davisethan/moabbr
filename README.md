@@ -1,54 +1,52 @@
 # moabbr
 
-A Python interface to R's statistical ecosystem, containerised in the [procr](https://hub.docker.com/r/ethandavisecd/procr) Docker image, for [MOABB](https://github.com/NeuroTechX/moabb) benchmark analysis.
+[MOABB](https://neurotechx.github.io/moabb/) interface to [tombolo](https://pypi.org/project/tombolo/) for analysis of machine learning benchmarks.
+
+MOABB evaluation results are a pandas DataFrame with one row per pipeline/dataset/subject/session. moabbr transforms this into the format tombolo expects using DuckDB, then calls the tombolo Docker image to run the analysis. Each dataset is treated as an independent study and each pipeline as a treatment.
+
+## Requirements
+
+[Docker](https://docs.docker.com/get-started/get-docker/) must be installed and running, and the tombolo image must be pulled:
+
+```
+docker pull ethandavisecd/tombolo:latest
+```
 
 ## Installation
 
-```bash
-pip install moabbr
 ```
-
-Requires [Docker](https://www.docker.com) with the procr image pulled:
-
-```bash
-docker pull ethandavisecd/procr:latest
+pip install moabbr
 ```
 
 ## Usage
 
 `results` is the `pd.DataFrame` returned by a MOABB evaluation, with columns `dataset`, `pipeline`, `subject`, and `score`.
 
-### Network meta-analysis
+```python
+from moabbr import nma, bnma
+
+data = moabbr.nma(results)    # frequentist NMA via netmeta
+data = moabbr.bnma(results)   # Bayesian NMA via gemtc
+```
+
+Both functions accept a `greater_is_better` flag (default `True`). Set to `False` for metrics where lower is better (e.g. error rate).
+
+## Plots
 
 ```python
-import moabbr as r
+from moabbr.plots import (
+    ranking_plot,
+    league_table,
+    forest_plot,
+    heterogeneity_table,
+    prediction_table,  # nma only
+    convergence_table, # bnma only
+)
 
-nma = r.nma(results)    # frequentist NMA via netmeta
-bnma = r.bnma(results)  # Bayesian NMA via gemtc (sensitivity analysis)
+ranking_plot(result)
+league_table(result)
+forest_plot(result, reference="my_pipeline")
+heterogeneity_table(result)
 ```
 
-Both functions accept a `greater_is_better` flag (default `True`); set it to `False` for metrics like NLL or Brier score.
-
-Each dataset is treated as an independent study and each pipeline as a treatment. Pairwise mean differences are computed per fold, then aggregated per dataset before being passed to R.
-
-## Development
-
-**Lint and format Python:**
-
-```bash
-ruff check moabbr
-ruff format moabbr
-```
-
-**Lint and format SQL:**
-
-```bash
-sqlfluff lint moabbr
-sqlfluff fix moabbr
-```
-
-**Generate docs:**
-
-```bash
-pdoc moabbr --output-dir docs
-```
+Each function returns a `matplotlib.figure.Figure`.
