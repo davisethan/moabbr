@@ -1,8 +1,8 @@
 # moabbr
 
-[MOABB](https://neurotechx.github.io/moabb/) interface to [tombolo](https://pypi.org/project/tombolo/) for analysis of machine learning benchmarks.
+[MOABB](https://neurotechx.github.io/moabb/) interface to [tombolo](https://pypi.org/project/tombolo/) for analysis of machine learning benchmarks in R.
 
-MOABB evaluation results are a pandas DataFrame with one row per pipeline/dataset/subject/session. moabbr transforms this into the format tombolo expects using DuckDB, then calls the tombolo Docker image to run the analysis. Each dataset is treated as an independent study and each pipeline as a treatment.
+MOABB evaluation results are a pandas DataFrame with one row per pipeline/dataset/subject/session. moabbr transforms evaluation results, then calls tombolo to run the analysis. Each dataset is treated as an independent study and each pipeline as a treatment.
 
 ## Requirements
 
@@ -25,8 +25,8 @@ pip install moabbr
 ```python
 from moabbr import nma, bnma
 
-data = moabbr.nma(results)    # frequentist NMA via netmeta
-data = moabbr.bnma(results)   # Bayesian NMA via gemtc
+result = nma(results)    # frequentist NMA via netmeta
+result = bnma(results)   # Bayesian NMA via gemtc
 ```
 
 Both functions accept a `greater_is_better` flag (default `True`). Set to `False` for metrics where lower is better (e.g. error rate).
